@@ -10,10 +10,10 @@
 
 | 👤 Name | 🌐 GitHub |
 |:--------:|:--------:|
-| 이창민 | <img src="https://img.shields.io/badge/GitHub-LeeChangmin0310-181717?style=flat&logo=GitHub&logoColor=white"> |
-| 명수연 | <img src="https://img.shields.io/badge/GitHub-suyeonmyeong-181717?style=flat&logo=GitHub&logoColor=white"> |
-| 안문식 | <img src="https://img.shields.io/badge/GitHub-dalsik-181717?style=flat&logo=GitHub&logoColor=white"> |
-| 진영인 | <img src="https://img.shields.io/badge/GitHub-0in11-181717?style=flat&logo=GitHub&logoColor=white"> |
+| LEE Changmin (이창민) | <img src="https://img.shields.io/badge/GitHub-LeeChangmin0310-181717?style=flat&logo=GitHub&logoColor=white"> |
+| MYEONG Suyeon (명수연) | <img src="https://img.shields.io/badge/GitHub-suyeonmyeong-181717?style=flat&logo=GitHub&logoColor=white"> |
+| AHN Munsik (안문식) | <img src="https://img.shields.io/badge/GitHub-dalsik-181717?style=flat&logo=GitHub&logoColor=white"> |
+| JIN Yeoungin (진영인) | <img src="https://img.shields.io/badge/GitHub-0in11-181717?style=flat&logo=GitHub&logoColor=white"> |
 <br/>
 
 🧨💣🧨💣🧨💣🧨💣🧨💣🧨💣🧨💣🧨💣  
