@@ -10,10 +10,11 @@
 
 | 👤 Name | 🌐 GitHub |
 |:--------:|:--------:|
-| LEE Changmin (이창민) | <img src="https://img.shields.io/badge/GitHub-LeeChangmin0310-181717?style=flat&logo=GitHub&logoColor=white"> |
-| MYEONG Suyeon (명수연) | <img src="https://img.shields.io/badge/GitHub-suyeonmyeong-181717?style=flat&logo=GitHub&logoColor=white"> |
-| AHN Munsik (안문식) | <img src="https://img.shields.io/badge/GitHub-dalsik-181717?style=flat&logo=GitHub&logoColor=white"> |
-| JIN Yeoungin (진영인) | <img src="https://img.shields.io/badge/GitHub-0in11-181717?style=flat&logo=GitHub&logoColor=white"> |
+| LEE Changmin (이창민) | [![GitHub](https://img.shields.io/badge/GitHub-LeeChangmin0310-181717?style=flat&logo=GitHub&logoColor=white)](https://github.com/LeeChangmin0310) |
+| MYEONG Suyeon (명수연) | [![GitHub](https://img.shields.io/badge/GitHub-suyeonmyeong-181717?style=flat&logo=GitHub&logoColor=white)](https://github.com/suyeonmyeong) |
+| AHN Munsik (안문식) | [![GitHub](https://img.shields.io/badge/GitHub-dalsik-181717?style=flat&logo=GitHub&logoColor=white)](https://github.com/dalsik) |
+| JIN Yeoungin (진영인) | [![GitHub](https://img.shields.io/badge/GitHub-0in11-181717?style=flat&logo=GitHub&logoColor=white)](https://github.com/0in11) |
+
 <br/>
 
 🧨💣🧨💣🧨💣🧨💣🧨💣🧨💣🧨💣🧨💣  
