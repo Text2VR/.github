@@ -2,18 +2,19 @@
 
 From a single text prompt to an interactive VR scene.
 
-Text2VR is a research-driven monorepo that turns natural language descriptions into VR-ready 3D environments and assets, combining panorama generation, asset extraction, 3D reconstruction, and VR deployment.
+Text2VR is a research-driven system that turns natural language descriptions into VR-ready 3D environments and assets, combining panorama generation, asset extraction, 3D reconstruction, and VR deployment in a single pipeline.
 
 ---
 
 ## Overview
 
-Text2VR is organized as a **single repository**:
+The organization currently maintains a **single main repository**:
 
 - **Repository**: `Text2VR/Text2VR`  
-  – Contains the LangGraph-based backend pipeline (`app/`, microservice folders)  
-  – Contains the React frontend (`src/`)  
-  – Contains service directories (panorama, segmentation, inpainting, 3D generation) and training/checkpoint folders
+  – LangGraph-based backend pipeline (`app/`, microservice clients, workflows)  
+  – React + TypeScript frontend (`src/`)  
+  – Service directories for panorama, segmentation, inpainting, and 3D generation  
+  – Docker Compose configuration and pretrained checkpoint folders
 
 High-level system architecture (see the main repo for full details):
 
@@ -26,11 +27,11 @@ High-level system architecture (see the main repo for full details):
 Text2VR is developed in the context of HCI and game/VR research:
 
 - **HCI Korea 2026 (submitted)**  
-  *“Text2VR: An End-to-End Pipeline for Interactive VR Scenes from a Single Text Prompt”*  
-  – Focuses on prompt-to-VR authoring workflow and a preliminary user study on ease of use, immersion, time acceptability, and visual quality.
+  *“Text2VR: A Modular Pipeline for Interactive VR Scenes from a Single Text Prompt”*  
+  – Focuses on a prompt-to-VR authoring workflow and a preliminary user study on perceived ease of use, immersion, time acceptability, and visual quality.
 
-- **Journal of The Korea Computer Society for Computer Game (planned submission)**  
-  – Extended journal version emphasizing VR content authoring workflows, interactive asset placement, and game/VR scene construction using Text2VR.
+- **Journal of the Korea Computer Game Society (submitted)**  
+  – Extended journal version emphasizing VR content authoring workflows, automatic asset and background generation, and interactive VR scene construction using Text2VR.
 
 The code in this organization corresponds to these works and is intended to be reproducible and extensible for further research.
 
@@ -40,41 +41,42 @@ The code in this organization corresponds to these works and is intended to be r
 
 At a high level, the Text2VR pipeline:
 
-1. **Rewrites user prompts** into optimized queries for generation (LLM-based query rewrite).
-2. **Generates a 360° panorama** from the prompt (DreamScene360: Stable Diffusion + Stitch Diffusion).
-3. **Segments interactive objects** (GPT-4o + GroundingDINO + SAM) and crops them as RGBA assets.
-4. **Converts 2D crops into 3D assets** (TRELLIS → GLB).
-5. **Inpaints the background** after object removal (Stable Diffusion 2 Inpaint).
-6. **Trains a 3D Gaussian Splatting background** from the inpainted panorama (PLY).
-7. **Packages everything for VR**, so scenes can be explored in a VR engine (e.g., Unity with a Gaussian Splatting plugin).
+1. **Rewrites user prompts** into optimized generation queries (LLM-based query rewrite via LangGraph).
+2. **Generates a 360° panorama** from the prompt using DreamScene360 (Stable Diffusion + Stitch Diffusion), with optional self-refinement.
+3. **Segments interactive objects** using GPT-4o + GroundingDINO + SAM and crops them as RGBA assets.
+4. **Converts 2D crops into 3D assets** with TRELLIS, producing GLB models.
+5. **Inpaints the background** after object removal using Stable Diffusion 2 Inpaint (wrap-aware).
+6. **Trains a 3D Gaussian Splatting background** from the inpainted panorama (PLY) for immersive VR rendering.
+7. **Packages everything for VR**, so scenes can be explored in a VR engine (e.g., Unity with a Gaussian Splatting plugin and colliders/interaction scripts).
 
 A more detailed pipeline overview is available in the `Text2VR` repository:
 
-![Pipeline Overview](https://raw.githubusercontent.com/Text2VR/Text2VR/main/docs/pipeline.png)
+![Pipeline Overview](https://raw.githubusercontent.com/Text2VR/Text2VR/main/docs/pipeline_overview.png)
 
 ---
 
 ## Tech Highlights
 
 - **LangGraph Orchestration**  
-  Explicit workflow graph managing panorama, segmentation, inpainting, 3D asset generation, and splatting.
+  Explicit workflow graph managing query rewrite, panorama generation, segmentation, inpainting, 3D asset generation, and Gaussian Splatting.
 
 - **Microservice Architecture (via Docker Compose)**  
   Separate containers for:
-  - Panorama generation (`DREAMSCENE360/`)
-  - Segmentation (`ASSET_SEG/`)
-  - Inpainting (`BG_INPAINT/`)
-  - 3D asset generation (`TRELLIS_API/`)
+  - Panorama generation (`DREAMSCENE360/` → `panorama-api`)
+  - Segmentation (`ASSET_SEG/` → `segmentation-api`)
+  - Inpainting (`BG_INPAINT/` → `inpainting-api`)
+  - 3D asset generation (TRELLIS → `trellis-api`)
 
 - **Frontend Integration**  
   React + TypeScript frontend (`src/`) for:
   - Prompt input and scene naming  
   - Real-time pipeline status and intermediate previews  
-  - 360° panorama and VR preview (A-Frame)
+  - Result browsing and download (panorama, assets, PLY, Unity export)
 
 - **VR-focused Outputs**  
-  - 3D GS background (PLY)  
-  - GLB assets ready for import into VR engines (e.g., Unity with Gaussian Splatting)
+  - 3D Gaussian Splatting background (PLY)  
+  - GLB assets ready for import into VR engines  
+  - Unity-ready export endpoints (`unity_assets` API) for building interactive VR scenes
 
 ---
 
@@ -86,10 +88,10 @@ For full details, see the `Text2VR` repository README. At a glance:
 - `src/` – React frontend
 - `DREAMSCENE360/` – Panorama generation service
 - `ASSET_SEG/` – Segmentation service
-- `BG_INPAINT/` – Inpainting service
-- `TRELLIS_API/` – 3D asset generation service
+- `BG_INPAINT/` – Background inpainting service
 - `docker-compose.yml` – Microservice orchestration
 - `docs/` – Architecture and pipeline diagrams
+- `pre_checkpoints/` – Pretrained model weights
 
 ---
 
@@ -141,9 +143,8 @@ Text2VR is developed by **Team GARASANI** (Capstone Design · Graduation 2025).
 
 ## For Reviewers and Collaborators
 
-- The **HCI paper** and **game journal version** both reference this organization as the implementation source.  
+- The **HCI conference paper** and the **computer game journal version** both reference this organization as the implementation source.  
 - To reproduce the system:
   - Start from `Text2VR/Text2VR`
   - Follow the repository README for environment setup, model downloads, and pipeline execution
 - Issues and feature requests can be opened on the main repository.
-
