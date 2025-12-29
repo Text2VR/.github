@@ -26,12 +26,15 @@ High-level system architecture (see the main repo for full details):
 
 Text2VR is developed in the context of HCI and game/VR research:
 
-- **HCI Korea 2026 (submitted)**  
+<!--- **HCI Korea 2026 (submitted)**  
   *“Text2VR: A Modular Pipeline for Interactive VR Scenes from a Single Text Prompt”*  
   – Focuses on a prompt-to-VR authoring workflow and a preliminary user study on perceived ease of use, immersion, time acceptability, and visual quality.
-
-- **Journal of the Korea Computer Game Society (submitted)**  
-  – Extended journal version emphasizing VR content authoring workflows, automatic asset and background generation, and interactive VR scene construction using Text2VR.
+!-->
+- Submitted to *Journal of Korea Computer Game Society (JKCGS)*
+- **Text2VR: A Modular Pipeline for Interactive VR Scenes from a Single Text Prompt** <br/>
+  ***CM. Lee**\*, S. Myoung\*, M. An\*, Y. Jin\*, EC. Lee†.* <br/>
+  **Note:** (*: Co-first Author, †: Corresponding Author) <br/>
+  - Extended journal version emphasizing VR content authoring workflows, automatic asset/background generation, and interactive VR scene construction using Text2VR.
 
 The code in this organization corresponds to these works and is intended to be reproducible and extensible for further research.
 
